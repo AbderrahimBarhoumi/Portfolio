@@ -14,7 +14,7 @@ Join
     treatments t ON a.treatment_ref = t.treatment_ref
 
 where
-	a.appointment_date = CURRENT_DATE      --show only today's appointments
+	a.appointment_date = CURRENT_DATE      --shows only today's appointments
 
 ORDER BY                        
 	 appointment_date, time;    --Order records by appointment date and time
