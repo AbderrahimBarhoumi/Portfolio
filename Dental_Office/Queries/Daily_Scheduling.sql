@@ -1,4 +1,4 @@
---Create a mixed query for daily usage 
+--Create a query for the daily appointments schedule query
 SELECT 
       p.full_name,
 	  p.first_appointment,
@@ -12,6 +12,9 @@ Join
     patients p ON a.patient_id = p.patient_id
 Join 
     treatments t ON a.treatment_ref = t.treatment_ref
-	
-where a.appointment_date = CURRENT_DATE
-ORDER BY appointment_date, time;
+
+where
+	a.appointment_date = CURRENT_DATE      --show only today's appointments
+
+ORDER BY                        
+	 appointment_date, time;    --Order records by appointment date and time
