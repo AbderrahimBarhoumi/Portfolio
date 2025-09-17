@@ -12,3 +12,21 @@ BEGIN
     );
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+/*Then we create another function that will update the patients table 
+to give them the loyalty pass
+*/
+CREATE OR REPLACE FUNCTION update_loyalty_pass()
+RETURNS VOID AS $$
+BEGIN
+    UPDATE patients
+    SET loyalty_pass = TRUE
+    WHERE patient_id IN (
+        SELECT patient_id
+        FROM appointments
+        WHERE status = 'Completed'
+        GROUP BY patient_id
+        HAVING COUNT(*) > 5
+    );
