@@ -1,0 +1,6 @@
+"QUERY PLAN"
+"Seq Scan on appointments  (cost=0.00..3.67 rows=1 width=4) (actual time=0.062..0.063 rows=0 loops=1)"
+"  Filter: ((appointment_date >= CURRENT_DATE) AND (appointment_date <= (CURRENT_DATE + '7 days'::interval)))"
+"  Rows Removed by Filter: 74"
+"Planning Time: 6.739 ms"
+"Execution Time: 0.093 ms"
