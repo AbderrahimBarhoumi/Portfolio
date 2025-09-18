@@ -20,7 +20,7 @@ CREATE TABLE unpaid_status PARTITION OF partitioned_billing
 FOR VALUES IN ('Unpaid');
 
 
---Now Let's convert Data to the partitioned as we did before
+--Now, let's convert the Data to the partitioned form as we did before
 
 INSERT INTO partitioned_billing (billing_num, appointment_num, fee, sales_tax,
 insurance_provider, outstanding_balance, amount_required, payment_date,
@@ -41,4 +41,8 @@ DROP TABLE billing
  --Rename the New table with the original name 
  ALTER TABLE partitioned_billing RENAME TO billing;
 
-
+--Last but not least, we reset the table constraints
+ALTER TABLE billing
+ADD CONSTRAINT billing_payment_status_check CHECK (payment_status IN('Paid', 'Unpaid'));
+ALTER TABLE
+billing ADD CONSTRAINT billing_pkey PRIMARY KEY (billing_num);
